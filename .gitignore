@@ -41,3 +41,12 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.idea/misc.xml
+.idea/new-repo.iml
+*.xml
+.idea/vcs.xml
+*.iml
+.idea/vcs.xml
+console apps/python/__pycache__/execute_around_querie.cpython-34.pyc
+*.pyc
+console apps/python/__pycache__/model.cpython-34.pyc

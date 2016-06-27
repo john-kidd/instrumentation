@@ -37,3 +37,15 @@ class Contact(ValueObject):
             self.email,
             self.comments,
             self.is_valid())
+
+
+class ContactId(ValueObject):
+
+    def __init__(self, contact_id):
+        if contact_id is None:
+            raise ValueError("Invalid contact Id")
+
+        self.contact_id = contact_id
+
+    def __str__(self):
+        return "Contact ID: {}".format(self.contact_id)
