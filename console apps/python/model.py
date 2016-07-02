@@ -43,7 +43,8 @@ class Contact(ValueObject):
 class ContactId(ValueObject):
 
     def __init__(self, contact_id):
-        if contact_id is None:
+        # fail fast
+        if not contact_id:
             raise ValueError("Invalid contact Id")
 
         self.contact_id = contact_id

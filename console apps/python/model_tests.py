@@ -2,6 +2,7 @@ import unittest
 from console_logger import log_info
 from validators import validate_input
 from model import Contact
+from model import ContactId
 
 class ModelTestCase(unittest.TestCase):
     """Tests for `model.py`."""
@@ -41,6 +42,16 @@ class ModelTestCase(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             validate_input(log_info, c)
+
+
+class ContactIdTestCase(unittest.TestCase):
+    """Tests for `model.py`."""
+
+
+    def test_contact_id_with_empty_id_raises_expected_error(self):
+        with self.assertRaises(ValueError):
+            ContactId(None)
+
 
 if __name__ == '__main__':
     unittest.main()
