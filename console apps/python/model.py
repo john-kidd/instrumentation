@@ -13,13 +13,14 @@ class ValueObject:
 
 class Contact(ValueObject):
     def __init__(self, name, mobile, email, comments=None):
-        if (name == None):
+        # fail fast
+        if not name:
             raise ValueError("Invalid name")
 
-        if (mobile == None):
+        if not mobile:
             raise ValueError("Invalid mobile")
 
-        if (email == None):
+        if not email:
             raise ValueError("Invalid email")
 
         self.name = name

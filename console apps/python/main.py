@@ -2,8 +2,8 @@
 
 from model import Contact
 from validators import validate_input
-from logger import log_info
-from execute_around_querie import timer
+from console_logger import log_info
+from execute_around_query import timer
 from queries import GetContact
 from model import ContactId
 
