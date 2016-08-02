@@ -15,3 +15,12 @@ def timer(log_info):
     return partial
 
 
+def around(log_info):
+    def partial(query, get_description):
+        log_info("BEGIN: {}".format(get_description()))
+        query_time = timer(log_info)
+        result = query_time(query, get_description)
+        log_info("END {}".format(get_description()))
+        return result
+
+    return partial
