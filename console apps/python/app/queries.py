@@ -14,7 +14,6 @@ class GetContact(Query):
         return self
 
 
-    def query(self):
-
+    def query(self):s
         contact = Contact("John F Kidd", "+4478866662", "john@test.com")
         return contact
