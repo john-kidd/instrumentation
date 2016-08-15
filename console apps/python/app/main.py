@@ -15,6 +15,6 @@ contact_id = ContactId(12345)
 get_contact = GetContact()
 query = timer(log_info)
 
-contact_12345 = query(get_contact.with_contact_id(contact_id).query, get_contact.get_description)
+contact_12345 = query(get_contact.query(contact_id), get_contact.get_description)
 
 log_info(contact_12345)

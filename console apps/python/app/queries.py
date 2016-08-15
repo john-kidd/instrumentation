@@ -1,19 +1,20 @@
-from model import Contact
+from db import get_contact_by_id
+
 
 class Query:
+    def __init__(self):
+        pass
 
     def get_description(self):
-
         return self.__class__.__name__
 
 
 class GetContact(Query):
+    def __init__(self):
+        pass
 
-    def with_contact_id(self, contact_id):
-        self.contact_id = contact_id
-        return self
-
-
-    def query(self):s
-        contact = Contact("John F Kidd", "+4478866662", "john@test.com")
-        return contact
+    @staticmethod
+    def query(contact_id):
+        if contact_id is None:
+            raise ValueError("Invalid contact id".format(contact_id))
+        return get_contact_by_id(contact_id)
