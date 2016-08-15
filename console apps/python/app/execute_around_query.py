@@ -9,7 +9,7 @@ def timer(log_info):
         result = query()
         stop = time.time()
         duration = stop - start
-        log_info("DURATION: {} took {} millseconds".format(get_description(), duration))
+        log_info("DURATION: {} took {} milliseconds".format(get_description(), duration))
         return result
 
     return partial
@@ -23,4 +23,11 @@ def around(log_info):
         log_info("END {}".format(get_description()))
         return result
 
+    return partial
+
+
+def compensate(log_info):
+    def partial(query, get_description):
+        return None
+    "TODO: add logic"
     return partial

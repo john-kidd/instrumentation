@@ -3,8 +3,6 @@ from ..app.console_logger import log_info
 from ..app.validators import validate_input
 from ..app.model import Contact
 from ..app.model import ContactId
-from ..app.execute_around_query import timer
-from ..app.execute_around_query import around
 
 
 class ModelTestCase(unittest.TestCase):
@@ -39,28 +37,6 @@ class ModelTestCase(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             validate_input(log_info, c)
-
-
-class ContactIdTestCase(unittest.TestCase):
-    """Tests for `model.py`."""
-
-    def test_contact_id_with_empty_id_raises_expected_error(self):
-        with self.assertRaises(ValueError):
-            ContactId(None)
-
-
-class ExecuteAroundQueryTestCase(unittest.TestCase):
-    """"Tests for 'execute_around_query.py'"""
-
-    def test_timer_logs_duration(self):
-        query = timer(log_info)
-        result = query(lambda: "test", lambda: "test description")
-        self.assertEqual("test", result)
-
-    def test_around_logs_duration(self):
-        query = around(log_info)
-        result = query(lambda: "test", lambda: "test description")
-        self.assertEqual("test", result)
 
 
 if __name__ == '__main__':

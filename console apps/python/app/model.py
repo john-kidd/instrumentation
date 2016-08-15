@@ -4,6 +4,9 @@ from validate_email import validate_email
 class ValueObject:
     """ base class for all value objects """
 
+    def __init__(self):
+        pass
+
     def __str__(self):
         """ override to provide the state of the value """
 
