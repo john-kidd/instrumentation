@@ -1,7 +1,5 @@
-from db import get_contact_by_id
-
-
 class Query:
+    """ Query is a base class that simply provides a get_description function """
     def __init__(self):
         pass
 
@@ -10,11 +8,11 @@ class Query:
 
 
 class GetContact(Query):
-    def __init__(self):
-        pass
+    """ GetContact is a query that validates we have a contact_id and class a db to retrieve a matching contact """
+    def __init__(self, db=None):
+        self.db = db
 
-    @staticmethod
-    def query(contact_id):
+    def query(self, contact_id):
         if contact_id is None:
             raise ValueError("Invalid contact id".format(contact_id))
-        return get_contact_by_id(contact_id)
+        return self.db.get_contact_by_id(contact_id)
