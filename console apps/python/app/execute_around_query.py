@@ -26,6 +26,7 @@ def around(log_info):
     return partial
 
 
+
 def compensate(log_info):
     def partial(query, get_description):
         return None
