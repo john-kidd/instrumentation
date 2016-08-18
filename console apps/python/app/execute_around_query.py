@@ -26,9 +26,14 @@ def around(log_info):
     return partial
 
 
-
-def compensate(log_info):
+def compensate(log_error, log_info):
     def partial(query, get_description):
-        return None
-    "TODO: add logic"
+        try:
+            query_around = around(log_info)
+            return query_around(query, get_description)
+        except ValueError as ex:
+            log_info("ERROR: {}".format(get_description))
+            log_error(ex)
+            raise ex
+
     return partial
