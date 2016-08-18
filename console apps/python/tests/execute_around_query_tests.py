@@ -42,7 +42,7 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
         result = query(lambda: "test", lambda: "test description")
         self.assertEquals("test", result)
 
-    def test_compensate_raises_logs_exception(self):
+    def test_compensate_raises_expected_exception(self):
         with self.assertRaises(ValueError):
             query = compensate(log_error, log_info)
             query(self._query_raises_error, lambda: "test description")
