@@ -31,12 +31,30 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
         result = query(lambda: "test", lambda: "test description")
         self.assertEqual("test", result)
 
+    def test_compensate_logs_duration(self):
+        with self.assertRaises(ValueError):
+            query = compensate(log_error, log_info)
+            query(self._query_raises_error, lambda: "test description")
+            self.assertIn("FAILED", self.current_message)
+
     def test_compensate_returns_expected_value(self):
         query = compensate(log_error, log_info)
         result = query(lambda: "test", lambda: "test description")
         self.assertEquals("test", result)
 
+    def test_compensate_raises_logs_exception(self):
+        with self.assertRaises(ValueError):
+            query = compensate(log_error, log_info)
+            query(self._query_raises_error, lambda: "test description")
+
+    @staticmethod
+    def _query_raises_error():
+        raise ValueError("test error")
+
     def _log_info(self, message):
+        self.current_message = self.current_message + message
+
+    def _log_error(self, message):
         self.current_message = self.current_message + message
 
 

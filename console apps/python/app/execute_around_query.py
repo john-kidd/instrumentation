@@ -32,8 +32,8 @@ def compensate(log_error, log_info):
             query_around = around(log_info)
             return query_around(query, get_description)
         except ValueError as ex:
-            log_info("ERROR: {}".format(get_description))
-            log_error(ex)
+            log_info("FAILED: {}".format(get_description()))
+            log_error(ex.message)
             raise ex
 
     return partial
