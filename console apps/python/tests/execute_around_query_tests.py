@@ -1,7 +1,7 @@
 import unittest
-from ..app.execute_around_query import timer
+from ..app.execute_around_query import timer, compensate
 from ..app.execute_around_query import around
-from ..app.console_logger import log_info
+from ..app.console_logger import log_info, log_error
 
 
 class ExecuteAroundQueryTestCase(unittest.TestCase):
@@ -30,6 +30,11 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
         query = around(log_info)
         result = query(lambda: "test", lambda: "test description")
         self.assertEqual("test", result)
+
+    def test_compensate_returns_expected_value(self):
+        query = compensate(log_error, log_info)
+        result = query(lambda: "test", lambda: "test description")
+        self.assertEquals("test", result)
 
     def _log_info(self, message):
         self.current_message = self.current_message + message
