@@ -35,7 +35,7 @@ class Contact(ValueObject):
         return validate_email(self.email)
 
     def __str__(self):
-        return "\n\tName: {0}\n\tMobile: {1}\n\tEmail: {2}\n\tComments: {3}\n\tValid: {4}".format(
+        return "\tName: {0}\n\tMobile: {1}\n\tEmail: {2}\n\tComments: {3}\n\tValid: {4}".format(
             self.name,
             self.mobile,
             self.email,
