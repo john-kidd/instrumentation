@@ -1,5 +1,5 @@
-from console_logger import log_info
-from validators import validate_input, validate_output
+from ..app.shared.console_logger import log_info
+from ..app.shared.guard import validate_input, validate_output
 
 import db
 

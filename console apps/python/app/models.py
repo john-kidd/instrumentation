@@ -60,7 +60,7 @@ class ContactId(ValueObject):
         if not contact_id:
             raise ValueError("Invalid contact Id")
 
-        self.contact_id = contact_id
+        self.value = contact_id
 
     def __str__(self):
-        return "Contact ID: {}".format(self.contact_id)
+        return "Contact ID: {}".format(self.value)
