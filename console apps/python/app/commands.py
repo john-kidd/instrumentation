@@ -12,8 +12,8 @@ class Command:
 
 
 class CreateContact(Command):
-    def __init__(self, adb=None):
-        self.db = adb or db
+    def __init__(self, a_db=None):
+        self.db = a_db or db
 
     def execute(self, contact):
         self.db.create_contact(contact)
