@@ -1,5 +1,5 @@
 from shared.console_logger import log_info
-from shared.validators import validate_input
+from shared.guard import validate_input
 
 import db
 
