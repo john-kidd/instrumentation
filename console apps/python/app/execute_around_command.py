@@ -17,7 +17,7 @@ def around(log_info):
         log_info("BEGIN: {}".format(get_description()))
         action_time = timer(log_info)
         action_time(action, get_description)
-        log_info("END {}".format(get_description()))
+        log_info("END: {}".format(get_description()))
 
     return partial
 

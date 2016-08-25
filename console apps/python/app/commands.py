@@ -1,4 +1,6 @@
 import db
+from validators import validate_input
+from console_logger import log_info
 
 
 class Command:
@@ -19,4 +21,5 @@ class CreateContact(Command):
             self.db = db
 
     def execute(self, contact):
+        validate_input(log_info, contact)
         self.db.create_contact(contact)

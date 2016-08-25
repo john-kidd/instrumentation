@@ -3,4 +3,4 @@ def get_contact_by_id(id):
 
 
 def create_contact(contact):
-    pass
+    print("Saved new contact {} with id: to sql server".format(contact.contact_id))
