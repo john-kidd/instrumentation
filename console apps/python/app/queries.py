@@ -24,6 +24,6 @@ class GetContact(Query):
 
     def query(self, contact_id):
         validate_input(log_info, contact_id)
-        result = self.db.get_contact_by_id(contact_id)
-        validate_output(log_info, result)
-        return result
+        contact = self.db.get_contact_by_id(contact_id)
+        validate_output(log_info, contact)
+        return contact
