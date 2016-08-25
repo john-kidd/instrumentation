@@ -1,6 +1,6 @@
-from app.model import Contact
-from app.console_logger import log_error, log_info
-from app.execute_around_command import compensate
+from ..app.model import Contact
+from ..app.console_logger import log_error, log_info
+from ..app.execute_around_command import compensate
 
 
 def create_contact():
