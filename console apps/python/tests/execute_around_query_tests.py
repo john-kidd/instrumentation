@@ -1,7 +1,8 @@
 import unittest
-from ..app.execute_around_query import timer, compensate
-from ..app.execute_around_query import around
-from ..app.console_logger import log_info, log_error
+
+from ..app.shared.console_logger import log_info, log_error
+from ..app.shared.execute_around_query import around
+from ..app.shared.execute_around_query import timer, compensate
 
 
 class ExecuteAroundQueryTestCase(unittest.TestCase):

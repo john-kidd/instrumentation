@@ -1,6 +1,7 @@
+from shared.console_logger import log_info
+from shared.validators import validate_input
+
 import db
-from validators import validate_input
-from console_logger import log_info
 
 
 class Command:

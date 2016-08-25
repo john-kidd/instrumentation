@@ -1,5 +1,5 @@
 import unittest
-from ..app.model import Contact
+from ..app.models import Contact
 from ..app.commands import CreateContact
 import db_stub
 

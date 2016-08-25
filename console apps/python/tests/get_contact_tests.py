@@ -1,5 +1,5 @@
 import unittest
-from ..app.model import ContactId
+from ..app.models import ContactId
 from ..app.queries import GetContact
 import db_stub
 import uuid

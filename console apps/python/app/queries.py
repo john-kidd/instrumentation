@@ -1,6 +1,7 @@
-import db
-from validators import validate_input, validate_output
 from console_logger import log_info
+from validators import validate_input, validate_output
+
+import db
 
 
 class Query:
