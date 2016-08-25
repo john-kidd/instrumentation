@@ -1,4 +1,5 @@
 from validate_email import validate_email
+import uuid
 
 
 class ValueObject:
@@ -15,7 +16,12 @@ class ValueObject:
 
 
 class Contact(ValueObject):
-    def __init__(self, name, mobile, email, comments=None):
+    def __init__(self, name, mobile, email, contact_id, comments=None):
+        if contact_id is not None:
+            self.contact_id = contact_id
+        else:
+            self.contact_id = uuid.uuid4()
+
         # fail fast
         if not name:
             raise ValueError("Invalid name")
@@ -31,11 +37,16 @@ class Contact(ValueObject):
         self.email = email
         self.comments = comments
 
+    @classmethod
+    def create(cls, name, mobile, email, contact_id, comments=None):
+        return cls(name, mobile, email, contact_id, comments)
+
     def is_valid(self):
         return validate_email(self.email)
 
     def __str__(self):
-        return "\tName: {0}\n\tMobile: {1}\n\tEmail: {2}\n\tComments: {3}\n\tValid: {4}".format(
+        return "\tContact Id: {}\n\tName: {}\n\tMobile: {}\n\tEmail: {}\n\tComments: {}\n\tValid: {}".format(
+            self.contact_id,
             self.name,
             self.mobile,
             self.email,
@@ -44,7 +55,6 @@ class Contact(ValueObject):
 
 
 class ContactId(ValueObject):
-
     def __init__(self, contact_id):
         # fail fast
         if not contact_id:
