@@ -1,7 +1,8 @@
-from app.model import Contact
-from app.console_logger import log_error, log_info
-from app.execute_around_command import compensate
+from app.shared.console_logger import log_error, log_info
+from app.shared.execute_around_command import compensate
+
 from app.commands import CreateContact
+from app.models import Contact
 
 
 def main():

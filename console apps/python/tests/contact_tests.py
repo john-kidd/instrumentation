@@ -1,12 +1,12 @@
 import unittest
+
 from ..app.console_logger import log_info
+from ..app.models import Contact
 from ..app.validators import validate_input
-from ..app.model import Contact
-from ..app.model import ContactId
 
 
 class ModelTestCase(unittest.TestCase):
-    """Tests for `model.py`."""
+    """Tests for `models.py`."""
 
     def test_contact_with_empty_name_raises_expected_error(self):
         with self.assertRaises(ValueError):

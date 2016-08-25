@@ -1,7 +1,7 @@
 import unittest
 
 from execute_around_command_fixture import ExecuteAroundCommandFixture
-from ..app.execute_around_command import timer, around
+from ..app.shared.execute_around_command import timer, around
 
 
 class ExecuteAroundCommandTestCase(unittest.TestCase):
