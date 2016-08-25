@@ -1,4 +1,4 @@
-from ..app.db import create_contact
+import db
 
 
 class Command:
@@ -12,8 +12,8 @@ class Command:
 
 
 class CreateContact(Command):
-    def __init__(self, db=None):
-        self.db = db
+    def __init__(self, adb=None):
+        self.db = adb or db
 
     def execute(self, contact):
-        create_contact(contact)
+        self.db.create_contact(contact)
