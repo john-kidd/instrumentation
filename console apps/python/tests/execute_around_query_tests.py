@@ -18,7 +18,7 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
         self.expected_contact = db_stub.get_contact_by_id(self.contact_id_stub)
 
     def test_timer_logs_duration(self):
-        query = timer(self._log_info)
+        query = timer(self.log_info)
         query(lambda: self.get_contact.query(self.contact_id_stub), self.get_contact.get_description)
         self.assertIn("DURATION", self.current_message)
 
@@ -28,7 +28,7 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
         self.assertIsNotNone(result.contact_id)
 
     def test_around_logs_before_and_after(self):
-        query = around(self._log_info)
+        query = around(self.log_info)
         query(lambda: self.get_contact.query(self.contact_id_stub), self.get_contact.get_description)
         self.assertIn("BEGIN", self.current_message)
         self.assertIn("END", self.current_message)
@@ -41,7 +41,7 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
     def test_compensate_logs_duration(self):
         with self.assertRaises(ValueError):
             query = compensate(log_error, log_info)
-            query(self._query_raises_error, lambda: "test description")
+            query(self.query_raises_error, lambda: "test description")
             self.assertIn("FAILED", self.current_message)
 
     def test_compensate_returns_expected_value(self):
@@ -52,16 +52,16 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
     def test_compensate_raises_expected_exception(self):
         with self.assertRaises(ValueError):
             query = compensate(log_error, log_info)
-            query(self._query_raises_error, lambda: "test description")
+            query(self.query_raises_error, lambda: "test description")
 
     @staticmethod
-    def _query_raises_error():
+    def query_raises_error():
         raise ValueError("test error")
 
-    def _log_info(self, message):
+    def log_info(self, message):
         self.current_message = self.current_message + message
 
-    def _log_error(self, message):
+    def log_error(self, message):
         self.current_message = self.current_message + message
 
 

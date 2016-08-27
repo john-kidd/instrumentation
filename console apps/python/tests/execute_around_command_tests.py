@@ -1,7 +1,8 @@
 import unittest
 
+from ..app.shared.console_logger import log_info, log_error
 from execute_around_command_fixture import ExecuteAroundCommandFixture
-from ..app.shared.execute_around_command import timer, around
+from ..app.shared.execute_around_command import timer, around, compensate
 
 
 class ExecuteAroundCommandTestCase(unittest.TestCase):
@@ -25,6 +26,27 @@ class ExecuteAroundCommandTestCase(unittest.TestCase):
         action(self.fixture.action_stub, lambda: "test description")
         self.assertIn("BEGIN", self.fixture.get_message())
         self.assertIn("END", self.fixture.get_message())
+
+    def test_compensate_logs_duration(self):
+        with self.assertRaises(ValueError):
+            action = compensate(log_error, log_info)
+            action(self.query_raises_error, lambda: "test description")
+            self.assertIn("FAILED", self.current_message)
+
+    def test_compensate_raises_expected_exception(self):
+        with self.assertRaises(ValueError):
+            action = compensate(log_error, log_info)
+            action(self.query_raises_error, lambda: "test description")
+
+    @staticmethod
+    def query_raises_error():
+        raise ValueError("test error")
+
+    def log_info(self, message):
+        self.current_message = self.current_message + message
+
+    def log_error(self, message):
+        self.current_message = self.current_message + message
 
 
 if __name__ == '__main__':
