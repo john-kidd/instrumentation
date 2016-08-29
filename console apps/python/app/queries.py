@@ -9,6 +9,7 @@ def get_description():
 
 
 def query(get_contact_by_id=None):
+    """returns an query that requires a contact id"""
     def partial(contact_id):
         validate_input(log_info, contact_id)
         if get_contact_by_id is not None:
