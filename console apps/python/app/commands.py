@@ -8,10 +8,9 @@ def get_description():
 
 
 def action(create_contact=None):
+    db_action = create_contact or db.create_contact
+
     def partial(contact):
         validate_input(log_info, contact)
-        if create_contact is not None:
-            create_contact(contact)
-        else:
-            db.create_contact(contact)
+        db_action(contact)
     return partial
