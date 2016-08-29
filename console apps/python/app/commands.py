@@ -1,26 +1,17 @@
 from shared.console_logger import log_info
 from shared.guard import validate_input
-
 import db
 
 
-class Command:
-    """ Command is a base class that simply provides a get_description function """
-
-    def __init__(self):
-        pass
-
-    def get_description(self):
-        return self.__class__.__name__
+def get_description():
+    return "create_contact"
 
 
-class CreateContact(Command):
-    def __init__(self, a_db=None):
-        if a_db is not None:
-            self.db = a_db
-        else:
-            self.db = db
-
-    def execute(self, contact):
+def action(create_contact=None):
+    def partial(contact):
         validate_input(log_info, contact)
-        self.db.create_contact(contact)
+        if create_contact is not None:
+            create_contact(contact)
+        else:
+            db.create_contact(contact)
+    return partial

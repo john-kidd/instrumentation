@@ -1,8 +1,9 @@
 import unittest
-from ..app.models import ContactId
-from ..app.queries import GetContact
-import db_stub
 import uuid
+
+from ..app.models import ContactId
+from ..app.queries import query
+import db_stub
 
 
 class GetContactTestCase(unittest.TestCase):
@@ -10,7 +11,7 @@ class GetContactTestCase(unittest.TestCase):
 
     def test_get_contact_from_db(self):
         contact_id_stub = ContactId(uuid.uuid4())
-        get_contact = GetContact(db_stub)
-        result = get_contact.query(contact_id_stub)
+        get_contact = query(db_stub.get_contact_by_id)
+        result = get_contact(contact_id_stub)
 
         self.assertTrue(result.is_valid())
