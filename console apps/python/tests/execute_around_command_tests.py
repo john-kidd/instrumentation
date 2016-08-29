@@ -12,31 +12,31 @@ class ExecuteAroundCommandTestCase(unittest.TestCase):
         self.fixture = ExecuteAroundCommandFixture()
 
     def test_timer_logs_duration(self):
-        action = timer(self.fixture.log_info)
-        action(self.fixture.action_stub, lambda: "test description")
+        target = timer(self.fixture.log_info)
+        target(self.fixture.action_stub, lambda: "test description")
         self.assertIn("DURATION", self.fixture.get_message())
 
     def test_timer_executes_expected_action(self):
-        action = timer(self.fixture.log_info)
-        action(self.fixture.action_stub, lambda: "test description")
+        target = timer(self.fixture.log_info)
+        target(self.fixture.action_stub, lambda: "test description")
         self.assertEqual(True, self.fixture.has_executed())
 
     def test_around_logs_before_and_after(self):
-        action = around(self.fixture.log_info)
-        action(self.fixture.action_stub, lambda: "test description")
+        target = around(self.fixture.log_info)
+        target(self.fixture.action_stub, lambda: "test description")
         self.assertIn("BEGIN", self.fixture.get_message())
         self.assertIn("END", self.fixture.get_message())
 
     def test_compensate_logs_duration(self):
         with self.assertRaises(ValueError):
-            action = compensate(log_error, log_info)
-            action(self.query_raises_error, lambda: "test description")
+            target = compensate(log_error, log_info)
+            target(self.query_raises_error, lambda: "test description")
             self.assertIn("FAILED", self.current_message)
 
     def test_compensate_raises_expected_exception(self):
         with self.assertRaises(ValueError):
-            action = compensate(log_error, log_info)
-            action(self.query_raises_error, lambda: "test description")
+            target = compensate(log_error, log_info)
+            target(self.query_raises_error, lambda: "test description")
 
     @staticmethod
     def query_raises_error():
