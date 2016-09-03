@@ -8,11 +8,11 @@ def rebase():
     connection.commit()
 
 
-def create_contact(contact):
+def create_contact(contact_id, name, mobile, email, comments):
     connection = sqlite3.connect('contacts')
     cursor = connection.cursor()
 
     cursor.execute("INSERT INTO contact (contact_id, name, mobile, email, comments) VALUES (?, ?, ?, ?, ?)",
-                   (contact.contact_id, contact.name, contact.mobile, contact.email, contact.comments))
+                   (contact_id, name, mobile, email, comments))
 
     connection.commit()

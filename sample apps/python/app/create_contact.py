@@ -13,5 +13,5 @@ def action(create_contact=None, log_info=None):
 
     def partial(contact):
         validate_input(log, contact)
-        create(contact)
+        create(contact.get_contact_id(), contact.name, contact.mobile, contact.email, contact.comments)
     return partial
