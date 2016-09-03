@@ -1,4 +1,4 @@
-from ..app.models import Contact
+from ..models import Contact
 
 
 def get_contact_by_id(contact_id):

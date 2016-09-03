@@ -1,7 +1,9 @@
 import unittest
-from ..app.commands import action
-from ..app.models import Contact
+
 import db_stub
+
+from ..commands import action
+from ..models import Contact
 
 
 class CreateContactTestCase(unittest.TestCase):

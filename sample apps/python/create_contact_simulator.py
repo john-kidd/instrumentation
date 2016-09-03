@@ -1,7 +1,8 @@
 from app.shared.console_logger import log_error, log_info
-from app.shared.execute_around_command import compensate
+
 from app.commands import action, get_description
 from app.models import Contact
+from app.shared.execute_around_command import compensate
 
 
 def main():

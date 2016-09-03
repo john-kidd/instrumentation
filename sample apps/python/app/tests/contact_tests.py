@@ -1,8 +1,6 @@
 import unittest
 
-from ..app.shared.console_logger import log_info
-from ..app.models import Contact
-from ..app.shared.guard import validate_input
+from ..models import Contact
 
 
 class ModelTestCase(unittest.TestCase):

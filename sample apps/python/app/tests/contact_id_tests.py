@@ -1,5 +1,5 @@
 import unittest
-from ..app.models import ContactId
+from ..models import ContactId
 
 
 class ContactIdTestCase(unittest.TestCase):
