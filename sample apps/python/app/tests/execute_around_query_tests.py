@@ -5,7 +5,7 @@ from ..shared.console_logger import log_info, log_error
 from ..shared.execute_around_query import around
 from ..shared.execute_around_query import timer, compensate
 from ..models import ContactId
-from ..queries import get_description, query
+from ..get_contact import get_description, query
 
 
 class ExecuteAroundQueryTestCase(unittest.TestCase):
