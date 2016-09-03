@@ -1,6 +1,6 @@
 from shared.console_logger import log_info
 
-import db
+import contact_repository
 from shared.guard import validate_input
 
 
@@ -9,7 +9,7 @@ def get_description():
 
 
 def action(create_contact=None):
-    db_action = create_contact or db.create_contact
+    db_action = create_contact or contact_repository.create_contact
 
     def partial(contact):
         validate_input(log_info, contact)

@@ -1,7 +1,15 @@
-def get_contact_by_id(contact_id):
-    print("Retrieved contact {} with id: to sql server".format(contact_id))
-    return None
+import sqlite3
 
 
-def create_contact(contact):
-    print("Saved new contact {} with id: to sql server".format(contact.contact_id))
+connection = sqlite3.connect('contacts')
+cursor = connection.cursor()
+cursor.execute("CREATE TABLE IF NOT EXISTS contact ("
+               "    contact_id text(32),"
+               "    name text(255),"
+               "    mobile text(30),"
+               "    email text(100),"
+               "    comments text(500))")
+
+
+
+
