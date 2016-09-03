@@ -1,4 +1,5 @@
 import sqlite3
+from models import Contact
 
 
 def rebase():
@@ -9,18 +10,19 @@ def rebase():
 
 
 def get_contact_by_id(contact_id):
-    print("Retrieved contact {} with id: to sql server".format(contact_id))
-    return None
+    connection = sqlite3.connect('contacts')
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM contact WHERE contact_id = ?", [contact_id])
+    row = cursor.fetchone()
+    contact = Contact.create(row[1], row[2], row[3], row[0], row[4])
+    return contact
 
 
 def create_contact(contact):
-    print("Saved new contact {} with id: to sql server".format(contact.contact_id))
     connection = sqlite3.connect('contacts')
     cursor = connection.cursor()
 
-    result = cursor.execute("INSERT INTO contact (contact_id, name, mobile, email, comments) VALUES (?, ?, ?, ?, ?)",
-                            (contact.contact_id, contact.name, contact.mobile, contact.email, contact.comments))
+    cursor.execute("INSERT INTO contact (contact_id, name, mobile, email, comments) VALUES (?, ?, ?, ?, ?)",
+                   (contact.contact_id, contact.name, contact.mobile, contact.email, contact.comments))
 
     connection.commit()
-
-    print(result)
