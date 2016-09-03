@@ -23,7 +23,7 @@ def create_and_read(contact):
     create_contact = action()
     get_contact = query()
     create_contact(contact)
-    result = get_contact(contact.get_contact_id())
+    result = get_contact(contact.contact_id)
     log_info(result)
 
 
