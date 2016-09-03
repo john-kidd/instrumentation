@@ -13,6 +13,6 @@ def create_contact(contact_id, name, mobile, email, comments):
     cursor = connection.cursor()
 
     cursor.execute("INSERT INTO contact (contact_id, name, mobile, email, comments) VALUES (?, ?, ?, ?, ?)",
-                   (contact_id, name, mobile, email, comments))
+                   (contact_id.get_contact_id(), name, mobile, email, comments))
 
     connection.commit()
