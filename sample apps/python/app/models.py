@@ -20,7 +20,7 @@ class Contact(ValueObject):
         if contact_id is not None:
             self.contact_id = contact_id
         else:
-            self.contact_id = uuid.uuid4()
+            self.contact_id = str(uuid.uuid4())
 
         # fail fast
         if not name:
