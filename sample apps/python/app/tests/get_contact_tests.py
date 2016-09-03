@@ -1,9 +1,10 @@
 import unittest
 import uuid
 
-from ..app.models import ContactId
-from ..app.queries import query
 import db_stub
+
+from ..models import ContactId
+from ..queries import query
 
 
 class GetContactTestCase(unittest.TestCase):

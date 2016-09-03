@@ -1,7 +1,6 @@
-from ..app.shared.console_logger import log_info
-from ..app.shared.guard import validate_input, validate_output
-
 import db
+from shared.console_logger import log_info
+from shared.guard import validate_input, validate_output
 
 
 def get_description():

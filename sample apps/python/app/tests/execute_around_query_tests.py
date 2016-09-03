@@ -1,11 +1,11 @@
 import unittest
 import uuid
-from ..app.shared.console_logger import log_info, log_error
-from ..app.shared.execute_around_query import around
-from ..app.shared.execute_around_query import timer, compensate
-from ..app.queries import get_description, query
-from ..app.models import ContactId
 import db_stub
+from ..shared.console_logger import log_info, log_error
+from ..shared.execute_around_query import around
+from ..shared.execute_around_query import timer, compensate
+from ..models import ContactId
+from ..queries import get_description, query
 
 
 class ExecuteAroundQueryTestCase(unittest.TestCase):
