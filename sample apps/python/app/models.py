@@ -38,7 +38,7 @@ class Contact(ValueObject):
         self.comments = comments
 
     @classmethod
-    def create(cls, name, mobile, email, contact_id, comments=None):
+    def create(cls, name, mobile, email, contact_id=None, comments=None):
         return cls(name, mobile, email, contact_id, comments)
 
     def is_valid(self):

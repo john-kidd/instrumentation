@@ -4,11 +4,11 @@ import uuid
 import db_stub
 
 from ..models import ContactId
-from ..queries import query
+from ..get_contact import query
 
 
 class GetContactTestCase(unittest.TestCase):
-    """"Tests for 'queries.py'"""
+    """"Tests for 'get_contact.py'"""
 
     def test_get_contact_from_db(self):
         contact_id_stub = ContactId(uuid.uuid4())

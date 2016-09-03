@@ -2,12 +2,12 @@ import unittest
 
 import db_stub
 
-from ..commands import action
+from ..create_contact import action
 from ..models import Contact
 
 
 class CreateContactTestCase(unittest.TestCase):
-    """"Tests for 'commands.py'"""
+    """"Tests for 'create_contact.py'"""
 
     def test_save_new_contact_no_comments_to_db(self):
         contact_stub = Contact.create("John F Kidd", 07763535221, "john.kidd@test.com", None)
