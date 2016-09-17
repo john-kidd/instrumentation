@@ -3,7 +3,7 @@ from app.db import get_connection
 
 
 def create_contact(contact_id, name, mobile, email, comments):
-    connection = sqlite3.connect('contacts.db')
+    connection = get_connection()
     cursor = connection.cursor()
 
     cursor.execute("INSERT INTO contact (contact_id, name, mobile, email, comments) VALUES (?, ?, ?, ?, ?)",
