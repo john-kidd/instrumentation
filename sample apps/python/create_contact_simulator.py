@@ -1,5 +1,5 @@
 import time
-
+from app.db import init_db
 from app.contact_command_repository import rebase
 from app.create_contact import action, get_description
 from app.get_contact import query
@@ -9,6 +9,7 @@ from app.shared.execute_around_command import compensate
 
 
 def main():
+    init_db()
     rebase()
     contact = Contact.create(
         "John F Kidd",

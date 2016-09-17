@@ -1,9 +1,9 @@
 import sqlite3
 from app.models import Contact, ContactId
-
+from app.db import get_connection
 
 def get_contact_by_id(contact_id):
-    connection = sqlite3.connect('contacts')
+    connection = get_connection()
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM contact WHERE contact_id = ?", [contact_id.value])
     row = cursor.fetchone()
