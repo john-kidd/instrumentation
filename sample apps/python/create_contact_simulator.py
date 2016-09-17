@@ -18,10 +18,10 @@ def main():
         comments="A test comment @ {}".format(time.strftime("%H:%M:%S")))
 
     execute = compensate(log_error, log_info)
-    execute(lambda: create_and_read(contact), get_description)
+    execute(lambda: create_query_log(contact), get_description)
 
 
-def create_and_read(contact):
+def create_query_log(contact):
     create_contact = action()
     get_contact = query()
     create_contact(contact)
