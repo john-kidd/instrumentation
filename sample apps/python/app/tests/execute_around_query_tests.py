@@ -1,11 +1,11 @@
 import unittest
 import uuid
-import db_stub
-from ..shared.console_logger import log_info, log_error
-from ..shared.execute_around_query import around
-from ..shared.execute_around_query import timer, compensate
-from ..models import ContactId
-from ..get_contact import get_description, query
+import app.tests.db_stub
+from app.shared.console_logger import log_info, log_error
+from app.shared.execute_around_query import around
+from app.shared.execute_around_query import timer, compensate
+from app.models import ContactId
+from app.get_contact import get_description, query
 
 
 class ExecuteAroundQueryTestCase(unittest.TestCase):
@@ -14,8 +14,8 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
     def setUp(self):
         self.contact_id_stub = ContactId(uuid.uuid4())
         self.current_message = ""
-        self.expected_contact = db_stub.get_contact_by_id(self.contact_id_stub)
-        self.query = query(db_stub.get_contact_by_id)
+        self.expected_contact = app.tests.db_stub.get_contact_by_id(self.contact_id_stub)
+        self.query = query(app.tests.db_stub.get_contact_by_id)
 
     def test_timer_logs_duration(self):
         target = timer(self.log_info)
@@ -36,7 +36,7 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
     def test_around_returns_expected_value(self):
         target = around(log_info)
         result = target(lambda: self.query(self.contact_id_stub), get_description)
-        self.assertEquals(self.expected_contact.contact_id, result.contact_id)
+        self.assertEqual(self.expected_contact.contact_id, result.contact_id)
 
     def test_compensate_logs_duration(self):
         with self.assertRaises(ValueError):
@@ -47,7 +47,7 @@ class ExecuteAroundQueryTestCase(unittest.TestCase):
     def test_compensate_returns_expected_value(self):
         target = compensate(log_error, log_info)
         result = target(lambda: self.query(self.contact_id_stub), get_description)
-        self.assertEquals(self.expected_contact.contact_id, result.contact_id)
+        self.assertEqual(self.expected_contact.contact_id, result.contact_id)
 
     def test_compensate_raises_expected_exception(self):
         with self.assertRaises(ValueError):

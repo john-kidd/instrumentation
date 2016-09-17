@@ -34,7 +34,8 @@ def compensate(log_error, log_info):
             correlation_id = str(uuid.uuid4())
             log_info("Correlation Id {}".format(correlation_id))
             log_info("FAILED {}\n".format(get_description()))
-            log_error(ex.message)
-            raise ValueError("An error has occurred. Please contact support with correlation Id {}".format(correlation_id))
+            log_error(ex)
+            raise ValueError(
+                "An error has occurred. Please contact support with correlation Id {}".format(correlation_id))
 
     return partial

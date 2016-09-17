@@ -1,5 +1,5 @@
 import sqlite3
-from models import Contact, ContactId
+from app.models import Contact, ContactId
 
 
 def get_contact_by_id(contact_id):
