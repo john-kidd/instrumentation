@@ -1,10 +1,11 @@
 import time
-from app.shared.console_logger import log_error, log_info
-from app.create_contact import action, get_description
-from app.models import Contact, ContactId
-from app.get_contact import query
-from app.shared.execute_around_command import compensate
+
 from app.contact_command_repository import rebase
+from app.create_contact import action, get_description
+from app.get_contact import query
+from app.models import Contact
+from app.shared.console_logger import log_error, log_info
+from app.shared.execute_around_command import compensate
 
 
 def main():

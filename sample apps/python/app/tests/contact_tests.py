@@ -1,6 +1,6 @@
 import unittest
 
-from ..models import Contact
+from app.models import Contact
 
 
 class ModelTestCase(unittest.TestCase):

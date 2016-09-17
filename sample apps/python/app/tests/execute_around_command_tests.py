@@ -1,7 +1,7 @@
 import unittest
 
-from ..shared.console_logger import log_info, log_error
-from ..shared.execute_around_command import timer, around, compensate
+from app.shared.console_logger import log_info, log_error
+from app.shared.execute_around_command import timer, around, compensate
 from execute_around_command_fixture import ExecuteAroundCommandFixture
 
 
