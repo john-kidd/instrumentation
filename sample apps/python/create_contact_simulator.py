@@ -1,6 +1,6 @@
 import time
 from app.db import init_db
-from app.contact_command_repository import rebase
+from app.db import rebase
 from app.create_contact import action, get_description
 from app.get_contact import query
 from app.models import Contact

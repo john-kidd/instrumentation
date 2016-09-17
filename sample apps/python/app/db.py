@@ -16,5 +16,12 @@ def init_db():
                    "    comments text(500))")
 
 
+def rebase():
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute("DELETE FROM contact")
+    connection.commit()
+
+
 
 
