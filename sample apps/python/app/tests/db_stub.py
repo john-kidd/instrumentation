@@ -6,5 +6,5 @@ def get_contact_by_id(contact_id):
 
 
 def create_contact(contact_id, name, mobile, email, comments):
-    print("Saved new contact to db:\n{}".format(contact_id))
+    print("Saved new contact to db:\n{}, {}, {}, {}, {}".format(contact_id, name, mobile, email, comments))
 
