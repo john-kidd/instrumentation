@@ -4,7 +4,7 @@ from app.db import rebase
 from app.create_contact import action, get_description
 from app.get_contact import query
 from app.models import Contact
-from app.shared.console_logger import log_error, log_info
+from app.shared.file_logger import log_error, log_info
 from app.shared.execute_around_command import compensate
 
 
@@ -22,8 +22,8 @@ def main():
 
 
 def create_and_read(contact):
-    create_contact = action()
-    get_contact = query()
+    create_contact = action(log_info=log_info)
+    get_contact = query(log_info=log_info)
     create_contact(contact)
     result = get_contact(contact.contact_id)
     log_info(result)
