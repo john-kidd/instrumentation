@@ -50,3 +50,5 @@ Temporary Items
 console apps/python/__pycache__/execute_around_querie.cpython-34.pyc
 *.pyc
 console apps/python/__pycache__/model.cpython-34.pyc
+
+*.class
