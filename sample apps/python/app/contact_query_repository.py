@@ -1,6 +1,6 @@
-import sqlite3
-from app.models import Contact, ContactId
 from app.db import get_connection
+from app.models import Contact, ContactId
+
 
 def get_contact_by_id(contact_id):
     connection = get_connection()
