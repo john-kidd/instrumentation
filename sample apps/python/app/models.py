@@ -45,13 +45,14 @@ class Contact(ValueObject):
         return validate_email(self.email)
 
     def __str__(self):
-        return "\tContact Id: {}\n\tName: {}\n\tMobile: {}\n\tEmail: {}\n\tComments: {}\n\tValid: {}".format(
-            self.contact_id,
-            self.name,
-            self.mobile,
-            self.email,
-            self.comments,
-            self.is_valid())
+            return "\tContact\n\t{}\n\t\tName: {}\n\t\tMobile: {}\n\t\tEmail: {}\n\t\tComments: {}\n\t\tValid: {}"\
+                .format(
+                    self.contact_id,
+                    self.name,
+                    self.mobile,
+                    self.email,
+                    self.comments,
+                    self.is_valid())
 
 
 class ContactId(ValueObject):
@@ -63,4 +64,4 @@ class ContactId(ValueObject):
         self.value = contact_id
 
     def __str__(self):
-        return "Contact ID: {}".format(self.value)
+        return "\tContactId.value: {}".format(self.value)

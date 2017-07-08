@@ -8,10 +8,10 @@ def get_description():
 
 
 def action(create_contact=None, log_info=None):
-    log = log_info or app.shared.console_logger.log_info
+    logger = log_info or app.shared.console_logger.log_info
     create = create_contact or app.contact_command_repository.create_contact
 
     def partial(contact):
-        validate_input(log, contact)
+        validate_input(logger, get_description(), contact)
         create(contact.contact_id, contact.name, contact.mobile, contact.email, contact.comments)
     return partial

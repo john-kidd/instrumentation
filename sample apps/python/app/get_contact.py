@@ -12,8 +12,8 @@ def query(get_contact_by_id=None, log_info=None):
     log = log_info or app.shared.console_logger.log_info
 
     def partial(contact_id):
-        validate_input(log, contact_id)
+        validate_input(log, get_description(), contact_id)
         contact = read(contact_id)
-        validate_output(log, contact)
+        validate_output(log, get_description(), contact)
         return contact
     return partial

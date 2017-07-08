@@ -9,6 +9,12 @@ class ContactIdTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             ContactId(None)
 
+    def test_contact_id_to_string(self):
+        target = ContactId("12345")
+        expected = "\tContactId.value: {}".format(target.value)
+        actual = target.__str__()
+        self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main()

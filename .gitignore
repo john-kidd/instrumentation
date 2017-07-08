@@ -56,3 +56,5 @@ console apps/python/__pycache__/model.cpython-34.pyc
 *.log
 
 *.db
+
+*.pyc
