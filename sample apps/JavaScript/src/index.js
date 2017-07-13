@@ -1,12 +1,18 @@
 import './index.css';
 
 import {getUsers, deleteUser} from './api/userApi';
-import {wrap} from './common/execute_around_command';
+import {wrap, handleError} from './common/execute_around_command';
 
 function logInfo(message) {
   console.log(message);
   document.getElementById('log').innerHTML += '<br/>';
   document.getElementById('log').innerHTML += message;
+}
+
+function logError(message) {
+  console.error(message);
+  document.getElementById('error').innerHTML += '<br/>';
+  document.getElementById('error').innerHTML += message;
 }
 
 // Populate table of users via API call.
@@ -41,3 +47,15 @@ getUsers().then(result => {
     });
   }, () => 'getUsers');
 });
+
+function divide(x, y) {
+  if (x === 0 || y === 0)
+    throw new Error('Divie by zero error');
+  return x / y;
+}
+
+try {
+  handleError(logInfo)(() => divide(1, 0), () => 'Divide');
+} catch(ex) {
+  logError(ex);
+}

@@ -2,7 +2,7 @@ import time
 import uuid
 
 
-def time(log_info):
+def log_time(log_info):
     def partial(action, get_description):
         start = time.time()
         action()
@@ -13,10 +13,10 @@ def time(log_info):
     return partial
 
 
-def wrap(log_info):
+def log_wrap(log_info):
     def partial(action, get_description):
         log_info("BEGIN {}".format(get_description()))
-        action_time = time(log_info)
+        action_time = log_time(log_info)
         action_time(action, get_description)
         log_info("END {}\n".format(get_description()))
 
@@ -26,7 +26,7 @@ def wrap(log_info):
 def handle_error(log_error, log_info):
     def partial(action, get_description):
         try:
-            action_around = wrap(log_info)
+            action_around = log_wrap(log_info)
             action_around(action, get_description)
         except ValueError as ex:
             correlation_id = str(uuid.uuid4())

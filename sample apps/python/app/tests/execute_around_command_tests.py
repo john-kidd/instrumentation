@@ -1,7 +1,7 @@
 import unittest
 
 from app.shared.console_logger import log_info, log_error
-from app.shared.execute_around_command import time, wrap, handle_error
+from app.shared.execute_around_command import log_time, log_wrap, handle_error
 
 
 class ExecuteAroundCommandTestCase(unittest.TestCase):
@@ -12,18 +12,18 @@ class ExecuteAroundCommandTestCase(unittest.TestCase):
         self.action_executed = False
         self.current_message = ""
 
-    def test_time_logs_duration(self):
-        target = time(self.log_info_stub)
+    def test_log_time_duration(self):
+        target = log_time(self.log_info_stub)
         target(self.action_stub, lambda: "test description")
         self.assertIn("DURATION", self.current_message)
 
-    def test_time_executes_expected_action(self):
-        target = time(self.log_info_stub)
+    def test_log_time_executes_expected_action(self):
+        target = log_time(self.log_info_stub)
         target(self.action_stub, lambda: "test description")
         self.assertEqual(True, self.action_executed)
 
-    def test_wrap_logs_before_and_after(self):
-        target = wrap(self.log_info_stub)
+    def test_log_wrap_logs_before_and_after(self):
+        target = log_wrap(self.log_info_stub)
         target(self.action_stub, lambda: "test description")
         self.assertIn("BEGIN", self.current_message)
         self.assertIn("END", self.current_message)

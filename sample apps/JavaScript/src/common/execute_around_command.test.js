@@ -1,11 +1,11 @@
 import {expect} from 'chai';
-import {time, wrap, handleError} from './execute_around_command'
+import {timer, wrap, handleError} from './execute_around_command'
 
-describe('time', () => {
+describe('timer', () => {
     it('DURATION of action is added to log', () => {
         const EXPECTED = 'DURATION';
         let actual = null;
-        const target = time(message => actual += message);
+        const target = timer(message => actual += message);
         target(() => console.log('executed'), () => 'an action');
         expect(actual).to.contain(EXPECTED);
     });
@@ -31,10 +31,18 @@ describe('handleError', () => {
     let actual = null;
     const target = handleError(message => actual += message);
     beforeEach(() => {
-        target(() => { throw new Error('an error has occurred'); }, () => 'an action');
+        try {
+            target(() => { throw new Error('an error has occurred'); }, () => 'an action');
+        } catch(ex){
+            // TODO: what is a more elegant way to handle this???
+        }
     });
     it('FAILED is added to log when an error is caught', () => {
         const EXPECTED = 'FAILED';
+        expect(actual).to.contain(EXPECTED);
+    })
+    it('Correlation Id is part of log', () => {
+        const EXPECTED = 'Correlation Id';
         expect(actual).to.contain(EXPECTED);
     })
 });

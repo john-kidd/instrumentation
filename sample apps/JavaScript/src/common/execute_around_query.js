@@ -1,22 +1,24 @@
 import createUUID from './uuid';
 
 export function timer(logInfo) {
-    return (action, getDescription) => {
+    return (query, getDescription) => {
         const start = new Date();
-        action();
+        const result = query();
         const end = new Date();        
         const duration = Math.floor(end - start) / (1000);
         logInfo(`DURATION: ${getDescription()} took ${duration}`); 
+        return result;
     }
 }
 
 export function wrap(logInfo) {
-    return (action, getDescription) => {
-        const action_timer = timer(logInfo);
+    return (query, getDescription) => {
+        const query_timer = timer(logInfo);
         logInfo(`BEGIN: ${getDescription()}`);
-        action_timer(action, getDescription);
+        const result = query_timer(query, getDescription);
         logInfo(`END: ${getDescription()}`);
         logInfo('\n');
+        return result;
     }
 }
 
@@ -27,7 +29,6 @@ export function handleError(logInfo) {
             action_wrap(action, getDescription);
         } catch(ex) {
             const correlationId = createUUID();
-            logInfo(ex);
             logInfo(`Correlation Id ${correlationId}`);
             logInfo(`FAILED: ${getDescription()}`);
             logInfo('\n');

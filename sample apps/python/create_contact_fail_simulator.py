@@ -18,15 +18,14 @@ def main():
         comments="A test comment @ {}".format(time.strftime("%H:%M:%S")))
 
     execute = handle_error(log_error, log_info)
-    execute(lambda: create_and_read(contact), get_description)
+    try:
+        execute(lambda: create_and_read(contact), get_description)
+    except ValueError:
+        print('Handled error')
 
 
 def create_and_read(contact):
-    try:
-        create_contact = action(log_info=log_info)
-        create_contact(contact)
-    except ValueError as ex:
-        log_error(ex)
+    raise ValueError(contact)
 
 if __name__ == '__main__':
     main()
