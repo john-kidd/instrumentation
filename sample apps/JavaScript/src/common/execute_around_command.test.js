@@ -1,19 +1,19 @@
 import {expect} from 'chai';
-import {timer, wrap, handleError} from './execute_around_command'
+import {logTime, logWrap, handleError} from './execute_around_command'
 
-describe('timer', () => {
+describe('logTime', () => {
     it('DURATION of action is added to log', () => {
         const EXPECTED = 'DURATION';
         let actual = null;
-        const target = timer(message => actual += message);
+        const target = logTime(message => actual += message);
         target(() => console.log('executed'), () => 'an action');
         expect(actual).to.contain(EXPECTED);
     });
 });
 
-describe('wrap', () => {
+describe('logWrap', () => {
     let actual = null;
-    const target = wrap(message => actual += message);
+    const target = logWrap(message => actual += message);
     beforeEach(() => {
         target(() => console.log('executed'), () => 'an action');
     });

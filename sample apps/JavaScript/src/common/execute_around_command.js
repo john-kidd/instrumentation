@@ -1,6 +1,6 @@
 import createUUID from './uuid';
 
-export function timer(logInfo) {
+export function logTime(logInfo) {
     return (action, getDescription) => {
         const start = new Date();
         action();
@@ -10,9 +10,9 @@ export function timer(logInfo) {
     }
 }
 
-export function wrap(logInfo) {
+export function logWrap(logInfo) {
     return (action, getDescription) => {
-        const action_timer = timer(logInfo);
+        const action_timer = logTime(logInfo);
         logInfo(`BEGIN: ${getDescription()}`);
         action_timer(action, getDescription);
         logInfo(`END: ${getDescription()}`);
@@ -20,15 +20,15 @@ export function wrap(logInfo) {
     }
 }
 
-export function handleError(logInfo) {
+export function handleError(logError, logInfo) {
     return (action, getDescription) => {
-        const action_wrap = wrap(logInfo);
+        const action_wrap = logWrap(logInfo);
         try {
             action_wrap(action, getDescription);
         } catch(ex) {
             const correlationId = createUUID();
-            logInfo(ex);
-            logInfo(`Correlation Id ${correlationId}`);
+            logError(ex);
+            logInfo(`Correlation Id: ${correlationId}`);
             logInfo(`FAILED: ${getDescription()}`);
             logInfo('\n');
             throw new Error(`An error has occurred. Please contact support with correlation Id ${correlationId}`);

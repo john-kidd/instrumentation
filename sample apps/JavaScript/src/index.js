@@ -1,7 +1,8 @@
 import './index.css';
 
 import {getUsers, deleteUser} from './api/userApi';
-import {wrap, handleError} from './common/execute_around_command';
+import {logWrap, handleError} from './common/execute_around_command';
+import {createContact} from '../commands/create_contact';
 
 function logInfo(message) {
   console.log(message);
@@ -17,7 +18,7 @@ function logError(message) {
 
 // Populate table of users via API call.
 getUsers().then(result => {
-  wrap(logInfo)(() => {
+  logWrap(logInfo)(() => {
     let usersBody = "";
 
     result.forEach(user => {
@@ -50,12 +51,14 @@ getUsers().then(result => {
 
 function divide(x, y) {
   if (x === 0 || y === 0)
-    throw new Error('Divie by zero error');
+    throw new Error('divide by zero error');
   return x / y;
 }
 
 try {
-  handleError(logInfo)(() => divide(1, 0), () => 'Divide');
+  handleError(logInfo)(() => divide(1, 0), () => 'divide');
 } catch(ex) {
   logError(ex);
 }
+
+createContact(logInfo)
