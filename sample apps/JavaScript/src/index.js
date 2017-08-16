@@ -2,7 +2,7 @@ import './index.css';
 
 import {getUsers, deleteUser} from './api/userApi';
 import {logWrap, handleError} from './common/execute_around_command';
-import {createContact} from '../commands/create_contact';
+import {createContact} from './commands/create_contact';
 
 function logInfo(message) {
   console.log(message);
@@ -55,8 +55,16 @@ function divide(x, y) {
   return x / y;
 }
 
+function createNewContact() {
+  const contact = { id: 1, name: 'John Kidd' };
+  createContact(logInfo, 'create contact')(contact);
+}
+
 try {
-  handleError(logInfo)(() => divide(1, 0), () => 'divide');
+  const execute = handleError(logError, logInfo);
+
+  execute(createNewContact, () => 'create contact');
+  execute(() => divide(1, 0), () => 'divide');
 } catch(ex) {
   logError(ex);
 }
